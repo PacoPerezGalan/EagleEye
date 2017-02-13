@@ -6,6 +6,7 @@ import android.Manifest;
 
 import android.app.Activity;
 
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -96,8 +97,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
     GoogleApiClient mGoogleApiClient;
     Button vista;
 
-    ArrayList<Lugar> lugaresList;
-    ArrayList<Place> placesList;
+    static ArrayList<Lugar> lugaresList;
     ArrayList<Marker> markerArrayList;
 
 
@@ -105,6 +105,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
     private String [] titulo = {"Alojamiento", "Comida","Dinero", "Emergencia", "Fallas", "Monumentos", "Ocio", "Transporte"};
 
     private int [] icon = {R.drawable.alojamiento,R.drawable.food,R.drawable.dinero,R.drawable.emergencia,R.drawable.fallas,R.drawable.monumentos,R.drawable.ocio,R.drawable.transportes};
+    private int [] icon2 = {R.drawable.alojamiento2,R.drawable.food2,R.drawable.dinero2,R.drawable.emergencia2,R.drawable.fallas2,R.drawable.monumentos2,R.drawable.ocio2,R.drawable.transportes2};
 
     private boolean drawerOpen = false;
 
@@ -120,23 +121,25 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
     static NavDrawerAdapter adapter;
     static int filtroSeleccionat;
     static String filtroTypes;
+    Button btn_lista;
+    Button btn_chat;
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps);
 
-
-        vista = (Button) findViewById(R.id.btn_vista);
         lugaresList=new ArrayList<Lugar>();
-        placesList=new ArrayList<Place>();
         markerArrayList=new ArrayList<Marker>();
         filtroTypes="lodging|campground|rv_park";
+        btn_lista=(Button) findViewById(R.id.btn_lista);
+        btn_chat=(Button) findViewById(R.id.btn_chat);
 
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().show();
+        getSupportActionBar().setTitle("");
 
         recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
 
@@ -146,7 +149,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
 
         filtroSeleccionat=1;
 
-        adapter = new NavDrawerAdapter(icon, titulo);
+        adapter = new NavDrawerAdapter(icon2, titulo);
 
         recyclerView.setAdapter(adapter);
 
@@ -174,20 +177,14 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         final SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
 
-
-        vista.setOnClickListener(new View.OnClickListener() {
+        btn_lista.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (mMap.getMapType() == GoogleMap.MAP_TYPE_NORMAL) {
-                    mMap.setMapType(GoogleMap.MAP_TYPE_HYBRID);
-                    vista.setText("Vista normal");
-
-                } else {
-                    mMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
-                    vista.setText("Vista satelite");
-                }
+                Intent i=new Intent(getApplicationContext(),ListaActivity.class);
+                startActivity(i);
             }
         });
+
     }
     public static void canviarFiltroSeleccionat(int s){
         filtroSeleccionat=s;
@@ -218,6 +215,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                 filtroTypes="bus_station|subway_station|taxi_stand|train_station|airport|parking";
                 break;
         }
+
 
     }
 
@@ -301,7 +299,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
             return;
         }
         mMap.setMyLocationEnabled(true);
-        mMap.setPadding(0,100,0,0);
+        mMap.setPadding(0,125,0,125);
 
         mMap.setOnCameraMoveStartedListener(new GoogleMap.OnCameraMoveStartedListener() {
             @Override
@@ -345,7 +343,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
             lng = location.getLongitude();
             Toast.makeText(this, "Localizacion chachi: " + lat + "   " + lng, Toast.LENGTH_SHORT).show();
             //agregarMarcador(lat, lng);
-            mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(lat,lng), 17));
+            mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(lat,lng), 15));
         } else {
 
         }
@@ -596,7 +594,15 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
 
         int id = item.getItemId();
 
-        if(id == R.id.action_setting){
+        if(id == R.id.vista){
+            if (mMap.getMapType() == GoogleMap.MAP_TYPE_NORMAL) {
+                mMap.setMapType(GoogleMap.MAP_TYPE_HYBRID);
+                item.setTitle("Vista normal");
+
+            } else {
+                mMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
+                item.setTitle("Vista satelite");
+            }
 
             return true;
         }

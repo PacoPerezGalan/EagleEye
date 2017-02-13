@@ -13,6 +13,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import static android.R.attr.color;
 import static android.R.attr.width;
 import static android.R.string.no;
 import static com.eagleeye.eagleeye.R.id.card;
@@ -68,9 +69,11 @@ public class NavDrawerAdapter extends RecyclerView.Adapter<NavDrawerAdapter.NavH
             holder.itemImg.setImageResource(icono[position-1]);
             holder.itemText.setText(titulo[position-1]);
             if(MapsActivity.filtroSeleccionat==holder.getAdapterPosition()){
-                holder.card.setCardBackgroundColor(Color.YELLOW);
+                holder.card.setCardBackgroundColor(Color.parseColor("#ffca45"));
+                holder.itemText.setTextColor(Color.WHITE);
             }else{
                 holder.card.setCardBackgroundColor(Color.WHITE);
+                holder.itemText.setTextColor(Color.parseColor("#ffca45"));
             }
 
 

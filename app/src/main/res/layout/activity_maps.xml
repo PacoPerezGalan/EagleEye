@@ -16,7 +16,7 @@
         android:name="com.google.android.gms.maps.SupportMapFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context="com.pacoperezgalan.geolocalitzacio_prova.MapsActivity" />
+        tools:context="com.eagleeye.eagleeye.MainActivity" />
 
         <include
             android:id="@+id/toolbar"
@@ -24,7 +24,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="35dp"
             android:orientation="horizontal"
             android:layout_alignParentBottom="true"
             android:layout_alignParentStart="true">
@@ -32,8 +32,20 @@
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/btn_vista"
-                android:text="Vista satelite" />
+                android:layout_weight="1"
+                android:id="@+id/btn_lista"
+                android:text="Lista"
+                android:background="@android:color/holo_orange_light"
+                android:textColor="@android:color/background_light" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:id="@+id/btn_chat"
+                android:text="Chat"
+                android:background="@android:color/holo_orange_dark"
+                android:textColor="@android:color/background_light" />
 
         </LinearLayout>
 
