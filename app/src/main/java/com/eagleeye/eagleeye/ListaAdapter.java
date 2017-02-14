@@ -10,10 +10,14 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.NotificationCompat;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
+import android.text.Html;
+import android.text.method.LinkMovementMethod;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -28,14 +32,17 @@ public class ListaAdapter extends RecyclerView.Adapter<ListaAdapter.itemViewHold
 
     public static class itemViewHolder extends RecyclerView.ViewHolder {
         TextView lugar,direccion,localizacion,telefono,web;
+        ImageView imatge;
+        RatingBar ratingBar;
         CardView card;
         public itemViewHolder(View v) {
             super(v);
             lugar= (TextView) v.findViewById(R.id.tv_lugar);
             direccion= (TextView) v.findViewById(R.id.tv_direccion);
-            localizacion= (TextView) v.findViewById(R.id.tv_localizacion);
             telefono= (TextView) v.findViewById(R.id.tv_telefono);
             web= (TextView) v.findViewById(R.id.tv_web);
+            imatge=(ImageView) v.findViewById(R.id.iv_lugar);
+            ratingBar=(RatingBar) v.findViewById(R.id.ratingBar);
 
             card= (CardView) v.findViewById(R.id.card);
 
@@ -61,11 +68,28 @@ public class ListaAdapter extends RecyclerView.Adapter<ListaAdapter.itemViewHold
 
     @Override
     public void onBindViewHolder(final itemViewHolder holder, int position) {
-        holder.lugar.setText("Lugar: "+lugarList.get(position).getName());
-        holder.direccion.setText("Direccion: "+lugarList.get(position).getAdress());
-        holder.localizacion.setText("Localizacion: "+lugarList.get(position).getLat()+" , "+lugarList.get(position).getLng());
-        holder.telefono.setText("Tlf: "+lugarList.get(position).getPhone());
-        holder.web.setText("Web: "+lugarList.get(position).getWeb());
+        holder.lugar.setText(lugarList.get(position).getName());
+        holder.direccion.setText(lugarList.get(position).getAdress());
+        //holder.localizacion.setText("Localizacion: "+lugarList.get(position).getLat()+" , "+lugarList.get(position).getLng());
+        holder.telefono.setText(lugarList.get(position).getPhone());
+
+        holder.web.setClickable(true);
+        holder.web.setText(Html.fromHtml(lugarList.get(position).getWeb()+""));
+        holder.web.setOnClickListener(new View.OnClickListener() {
+            @Override public void onClick(View view) {
+                Intent myIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(lugarList.get(holder.getAdapterPosition()).getWeb()+""));
+                view.getContext().startActivity(myIntent);
+            }
+        });
+
+
+        holder.imatge.setImageBitmap(lugarList.get(position).getFoto());
+
+        if(lugarList.get(position).getRating()!=-1.0){
+            holder.ratingBar.setRating(lugarList.get(holder.getAdapterPosition()).getRating());
+        }else{
+            holder.ratingBar.setVisibility(View.INVISIBLE);
+        }
 
         holder.card.setOnClickListener(new View.OnClickListener() {
             @Override

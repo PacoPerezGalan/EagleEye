@@ -94,7 +94,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
     Double lat = 0.0;
     double lng = 0.0;
 
-    GoogleApiClient mGoogleApiClient;
+    static GoogleApiClient mGoogleApiClient;
     Button vista;
 
     static ArrayList<Lugar> lugaresList;
@@ -105,7 +105,10 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
     private String [] titulo = {"Alojamiento", "Comida","Dinero", "Emergencia", "Fallas", "Monumentos", "Ocio", "Transporte"};
 
     private int [] icon = {R.drawable.alojamiento,R.drawable.food,R.drawable.dinero,R.drawable.emergencia,R.drawable.fallas,R.drawable.monumentos,R.drawable.ocio,R.drawable.transportes};
-    private int [] icon2 = {R.drawable.alojamiento2,R.drawable.food2,R.drawable.dinero2,R.drawable.emergencia2,R.drawable.fallas2,R.drawable.monumentos2,R.drawable.ocio2,R.drawable.transportes2};
+    private int [] icon2 = {R.drawable.alojamiento2,R.drawable.food2,
+            R.drawable.dinero2, R.drawable.emergencia2,
+            R.drawable.fallas2,R.drawable.monumentos2,
+            R.drawable.ocio2,R.drawable.transportes2};
 
     private boolean drawerOpen = false;
 
@@ -222,8 +225,9 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
     String [] idLugares;
 
     public void pintarLugaresMapa(){
-        idLugares=new String [lugaresList.size()];
         /*
+        idLugares=new String [lugaresList.size()];
+
         for(int i=0;i<lugaresList.size();i++){
             idLugares[i]=lugaresList.get(i).getId();
         }
@@ -563,8 +567,8 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
             return;
         }
 
-        Location mLastLocation = LocationServices.FusedLocationApi.getLastLocation(
-                mGoogleApiClient);
+        Location mLastLocation = LocationServices.FusedLocationApi.getLastLocation(mGoogleApiClient);
+
         if (mLastLocation != null) {
             actualitzarUbicacio(mLastLocation);
 

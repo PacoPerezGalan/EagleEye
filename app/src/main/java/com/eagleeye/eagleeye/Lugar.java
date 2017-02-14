@@ -1,5 +1,6 @@
 package com.eagleeye.eagleeye;
 
+import android.graphics.Bitmap;
 import android.net.Uri;
 
 import static android.R.attr.rating;
@@ -16,6 +17,7 @@ public class Lugar {
     String adress;
     String phone;
     Uri web;
+    Bitmap foto;
     float rating;
 
     public String getId() {
@@ -80,5 +82,13 @@ public class Lugar {
 
     public void setRating(float rating) {
         this.rating = rating;
+    }
+
+    public Bitmap getFoto() {
+        return foto;
+    }
+
+    public void setFoto(Bitmap foto) {
+        this.foto = foto;
     }
 }

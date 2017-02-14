@@ -24,7 +24,10 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent i=new Intent(getApplicationContext(),MapsActivity.class);
-                startActivity(i,ActivityOptions.makeSceneTransitionAnimation(MainActivity.this).toBundle());
+
+                startActivity(i);
+                //overridePendingTransition(R.anim.left_out,R.anim.left_in);
+
             }
         });
 

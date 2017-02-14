@@ -9,6 +9,7 @@
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
     card_view:cardCornerRadius="10dp"
     card_view:cardElevation="4dp"
+    card_view:cardBackgroundColor="@color/colorAccent"
     card_view:cardUseCompatPadding="true"
     card_view:cardPreventCornerOverlap="false">
 
@@ -17,31 +18,89 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp">
-        <TextView
-            android:text="Lugar: "
-            android:id="@+id/tv_lugar"
+
+        <ImageView
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-        <TextView
-            android:text="Direccion: "
-            android:id="@+id/tv_direccion"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-        <TextView
-            android:text="Localizacion: "
-            android:id="@+id/tv_localizacion"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            card_view:srcCompat="@color/cast_expanded_controller_seek_bar_progress_background_tint_color"
+            android:id="@+id/iv_lugar" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                android:text="Lugar: "
+                android:textColor="@color/naranja"
+                android:id="@+id/tvlugar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:textColor="@color/colorPrimary"
+                android:id="@+id/tv_lugar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                android:text="Direccion: "
+                android:textColor="@color/naranja"
+                android:id="@+id/tvdireccion"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:textColor="@color/colorPrimary"
+                android:id="@+id/tv_direccion"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
         <TextView
             android:text="Telefono: "
+            android:textColor="@color/naranja"
+            android:id="@+id/tvtelefono"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:textColor="@color/colorPrimary"
             android:id="@+id/tv_telefono"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
         <TextView
             android:text="Web: "
-            android:id="@+id/tv_web"
+            android:textColor="@color/naranja"
+            android:id="@+id/tvweb"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
+        <TextView
+            android:textColor="@color/colorPrimary"
+            android:id="@+id/tv_web"
+            android:textStyle="italic"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+
+        <RatingBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:isIndicator="true"
+            android:id="@+id/ratingBar"
+            style="@android:style/Widget.DeviceDefault.RatingBar.Small"
+            android:background="@color/colorPrimary" />
+
 
     </LinearLayout>
 </android.support.v7.widget.CardView>

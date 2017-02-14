@@ -7,8 +7,9 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
 
-        <!--Habilitar animaciones en las transiciones -->
+        <!-- enable window content transitions -->
         <item name="android:windowContentTransitions">true</item>
+
     </style>
 
 </resources>
