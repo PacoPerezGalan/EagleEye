@@ -1,0 +1,277 @@
+{
+	"monumentos": [{
+		"nombre": "Torres de Serranos",
+		"direccion": "Plaza de Fueros, Valencia 46003.",
+        "entrada" : "2€",
+        "cerrado": "Lunes",
+		"imagen": "http://www.valencia-cityguide.com/images/attractions/iconserra.jpg",
+		"coordenadas": [-0.374431 , 39.475253]
+	}, {
+		"nombre": "Lonja de la Seda",
+		"direccion": "Plaza del Mercado, Valencia 46001.",
+         "entrada" : "2€",
+         "cerrado": "Lunes",
+		"imagen": "http://www.valencia-cityguide.com/images/attractions/iconlonja.jpg",
+		"coordenadas": [-0.378544 , 39.473740]
+	}, {
+		"nombre": "Mercado Central",
+		"direccion": "Plaza del Mercado 6, Valencia 46001.",
+         "entrada" : "Gratis",
+        "cerrado": "Domingo",
+		"imagen": "http://www.valencia-cityguide.com/images/attractions/iconcentral.jpg",
+		"coordenadas": [-0.378544 , 39.473740]
+	}, {
+		"nombre": "Almudin",
+		"direccion": "San Luis Beltrán 1, Valencia 46003.",
+      "entrada" : "2€",
+      "cerrado": "Lunes",
+		"imagen": "http://www.valencia-cityguide.com/images/attractions/iconalmu.jpg",
+		"coordenadas" : [-0.374012,39.475871]
+	}, {
+		"nombre": "Plaza Redonda",
+		"direccion": "San Vicente Martir, 46001.",
+      "entrada" : "Gratis",
+      "cerrado": "Abre a diario",
+		"imagen": "http://www.valencia-cityguide.com/images/attractions/iconredonda.jpg",
+		"coordenadas": [-0.376762 , 39.472916]
+	}, {
+		"nombre": "Ayuntamiento",
+		"direccion": "Plaza Ayuntamiento 1, Valencia 46003.",
+        "entrada" : "Gratis",
+        "cerrado": "Fin de semana",
+		"imagen": "http://www.valencia-cityguide.com/images/attractions/iconayu.jpg",
+		"coordenadas": [-0.3763755999999603 , 39.469829]
+	}, {
+		"nombre": "Estacion del Norte",
+		"direccion": "Calle Xativa 24, Valencia 46007.",
+      "entrada" : "Gratis",
+      "cerrado": "Abre a diario",
+		"imagen": "http://www.valencia-cityguide.com/images/attractions/iconnorte.jpg",
+		"coordenadas" : [-0.377376 , 39.466173]
+	}, {
+		"nombre": "Mercado de Colón",
+		"direccion": "Calle Jorge Juan, Valencia 46004.",
+      "entrada" : "Gratis",
+      "cerrado": "Abre a diario",
+		"imagen": "http://www.valencia-cityguide.com/images/attractions/iconcolon.jpg",
+		"coordenadas" : [-0.368546,39.468253]
+	}, {
+		"nombre": "Estacion Maritima y Tinglados",
+		"direccion": "Doctor J.J. Domine, Valencia 46011.",
+      "entrada" : "Gratis",
+      "cerrado": "Acceso abierto",
+		"imagen": "http://www.valencia-cityguide.com/images/attractions/iconport.jpg",
+		"coordenadas" : [ -0.331491 , 39.461829]
+	}, {
+		"nombre": "Port Americas Cup",
+		"direccion": "Puerto de Valencia, Valencia 46024.",
+      "entrada" : "Gratis",
+      "cerrado": "Acceso abierto",
+		"imagen": "http://www.valencia-cityguide.com/images/attractions/iconveles.jpg",
+		"coordenadas" : [-0.324424,39.460360]
+	}, {
+		"nombre": "Hemisferic",
+		"direccion": "Autopista del Saler 3, Valencia 46013.",
+      "entrada" : "7.85€",
+      "cerrado": "Abre a diario",
+		"imagen": "http://www.valencia-cityguide.com/images/attractions/iconhemisfe.jpg",
+		"coordenadas" : [-0.35487, 39.45683]
+	}, {
+		"nombre": "Palau de les Arts Reina Sofia",
+		"direccion": "Autopista del Saler 3, Valencia 46013.",
+      "entrada" : "8€",
+      "cerrado": "Abre a diario",
+		"imagen": "http://www.valencia-cityguide.com/images/attractions/iconarts.jpg",
+		"coordenadas" : [-0.35487,39.45683]
+	}, {
+		"nombre": "Ágora",
+		"direccion": "Autopista del Saler 3, Valencia 46013.",
+      "entrada" : "Depende del evento",
+      "cerrado": "Abierto sólo en eventos",
+		"imagen": "http://www.valencia-cityguide.com/images/attractions/iconagora.jpg",
+		"coordenadas" : [-0.35487, 39.45683]
+	}, {
+		"nombre": "Palacio de Benicarlo",
+		"direccion": "Pza. San Lorenzo 4, Valencia 46003.",
+      "entrada" : "Gratis",
+      "cerrado": "Fin de semana",
+		"imagen": "http://www.valencia-cityguide.com/images/attractions/iconbeni.jpg",
+		"coordenadas" : [ -0.374787,39.477204]
+	}, {
+		"nombre": "Palau de la Generalitat",
+		"direccion": "Caballeros 2, Valencia 46001.",
+      "entrada" : "Disponible sólo con reserva",
+      "cerrado": "Disponible sólo con reserva",
+		"imagen": "http://www.valencia-cityguide.com/images/attractions/icongene.jpg",
+		"coordenadas" : [ -0.376530,39.476000 ]
+	}, {
+		"nombre": "Palacio de Escriva y Boil",
+		"direccion": "Pza. San Luis Beltrán 2, Valencia 46003.",
+      "entrada" : "Disponible sólo con reserva",
+      "cerrado": "Disponible sólo con reserva",
+		"imagen": "http://www.valencia-cityguide.com/images/attractions/iconescriva.jpg",
+		"coordenadas" : [ -0.373521,39.476572]
+	}, {
+		"nombre": "Palacio de Baylia",
+		"direccion": "Plaza de Manises 4, Valencia 46003.",
+      "entrada" : "Disponible sólo con reserva",
+      "cerrado": "Disponible sólo con reserva",
+		"imagen": "http://www.valencia-cityguide.com/images/attractions/iconbaylia.jpg",
+		"coordenadas" : [ -0.376829,39.476354]
+	}, {
+		"nombre": "Palacio del Marqués de la Scala",
+		"direccion": "Plaza de Manises 4, Valencia 46003.",
+      "entrada" : "Disponible sólo con reserva",
+      "cerrado": "Disponible sólo con reserva",
+		"imagen": "http://www.valencia-cityguide.com/images/attractions/iconscala.jpg",
+		"coordenadas" : [ -0.377097,39.476341]
+	}, {
+		"nombre": "Portal de Valldigna",
+		"direccion": "Portal de Valldigna 12, Valencia 46003.",
+      "entrada" : "Espacio abierto",
+      "cerrado": "Espacio abierto",
+		"imagen": "http://www.valencia-cityguide.com/images/attractions/iconvalldigna.jpg",
+		"coordenadas" : [-0.378847,39.476827]
+	}, {
+		"nombre": "Baños árabes del Almirante",
+		"direccion": "Almirante 3, Valencia 46003.",
+      "entrada" : "Gratis",
+      "cerrado": "Lunes",
+		"imagen": "http://www.valencia-cityguide.com/images/attractions/iconbanos.jpg",
+		"coordenadas" : [ -0.365707, 39.475404]
+
+	}, {
+		"nombre": "Universidad",
+		"direccion": "Universidad, Valencia 46003.",
+      "entrada" : "Gratis",
+      "cerrado": "Fin de semana",
+		"imagen": "http://www.valencia-cityguide.com/images/attractions/iconunive.jpg",
+		"coordenadas" : [ -0.364812,39.478812]
+	}, {
+		"nombre": "Torres de Quart",
+		"direccion": "Guillem de Castro 89, Valencia 46003.",
+      "entrada" : "2€",
+      "cerrado": "Lunes",
+		"imagen": "http://www.valencia-cityguide.com/images/attractions/iconquart.jpg",
+		"coordenadas" : [ -0.384086,39.475045 ]
+	}, {
+		"nombre": "Edificio de Correos",
+		"direccion": "Plaza Ayuntamiento 24, Valencia 46002.",
+      "entrada" : "Gratis",
+      "cerrado": "Domingo",
+		"imagen": "http://www.valencia-cityguide.com/images/attractions/iconcorreos.jpg",
+		"coordenadas" : [-0.375509,39.468825]
+	}, {
+		"nombre": "Asilo del Marques de Campo",
+		"direccion": "Corona 34, Valencia 46003.",
+      "entrada" : "Propiedad privada",
+      "cerrado": "Propiedad privada",
+		"imagen": "http://www.valencia-cityguide.com/images/attractions/iconasilo.jpg",
+		"coordenadas" : [-0.374152,39.475291]
+	}, {
+		"nombre": "Casa del Punt de Gantxo",
+		"direccion": "Plaza de la Almoina 4, Valencia 46003.",
+      "entrada" : "Propiedad privada",
+      "cerrado": "Propiedad privada",
+		"imagen": "http://www.valencia-cityguide.com/images/attractions/iconpunt.jpg",
+		"coordenadas" : [-0.374445,39.475188]
+	}, {
+		"nombre": "Casa Vestuario",
+		"direccion": "Plaza de la Virgen 1, Valencia 46001.",
+      "entrada" : "Gratis",
+      "cerrado": "Fin de semana",
+		"imagen": "http://www.valencia-cityguide.com/images/attractions/iconvestu.jpg",
+		"coordenadas" :  [-0.375544,39.475328 ]
+	}, {
+		"nombre": "Palacio Monasterio del Temple",
+		"direccion": "Plaza del Temple, Valencia 46003.",
+      "entrada" : "Disponible sólo con reserva",
+      "cerrado": "Disponible sólo con reserva",
+		"imagen": "http://www.valencia-cityguide.com/images/attractions/icontemple.jpg",
+		"coordenadas" : [-0.371429,39.475948]
+	}, {
+		"nombre": "Teatro Principal",
+		"direccion": "Barcas 15, Valencia 46002.",
+      "entrada" : "Depende del evento",
+      "cerrado": "Lunes",
+		"imagen": "http://www.valencia-cityguide.com/images/attractions/iconteatro.jpg",
+		"coordenadas" :  [-0.374620,39.469913]
+	}, {
+		"nombre": "Palacio Arzobispal",
+		"direccion": "Palau 2, Valencia 46003.",
+      "entrada" : "Propiedad privada",
+      "cerrado": "Propiedad privada",
+		"imagen": "http://www.valencia-cityguide.com/images/attractions/iconarzo.jpg",
+		"coordenadas" : [ -0.374370,39.474754]
+	}, {
+		"nombre": "Palacio de Cervello",
+		"direccion": "Plaza de Tetuan 3, Valencia 46003.",
+      "entrada" : "2€",
+      "cerrado": "Lunes",
+		"imagen": "http://www.valencia-cityguide.com/images/attractions/iconcervello.jpg",
+		"coordenadas" : [-0.376170,39.477339]
+	}, {
+		"nombre": "Palacio de Pineda",
+		"direccion": "Plaza del Carmen 4, Valencia 46003.",
+      "entrada" : "2€",
+      "cerrado": "Domingo",
+		"imagen": "http://www.valencia-cityguide.com/images/attractions/iconpineda.jpg",
+		"coordenadas" : [ -0.378803,39.478286]
+	}, {
+		"nombre": "Palacio de los Boïl de Arenós",
+		"direccion": "Libreros 2, Valencia 46002.",
+      "entrada" : "Gratis",
+      "cerrado": "Espacio abierto",
+		"imagen": "http://www.valencia-cityguide.com/images/attractions/iconboil.jpg",
+		"coordenadas" : [ -0.374033 , 39.471908]
+	}, {
+		"nombre": "Estación del Puente de Madera",
+		"direccion": "Cronista Rivelles, Valencia 46009.",
+      "entrada" : "Gratis",
+      "cerrado": "Espacio abierto",
+		"imagen": "http://www.valencia-cityguide.com/images/attractions/iconmadera.jpg",
+		"coordenadas" : [ -0.373735,39.480459]
+	}, {
+		"nombre": "Palacio de Justicia",
+		"direccion": "Palacio de Justicia, Valencia 46003.",
+      "entrada" : "Propiedad privada",
+      "cerrado": "Propiedad privada",
+		"imagen": "http://www.valencia-cityguide.com/images/attractions/iconjusticia.jpg",
+		"coordenadas" : [ -0.369877,39.471157]
+	}, {
+		"nombre": "Antiguo Hospital General",
+		"direccion": "Hospital 13, Valencia 46001.",
+      "entrada" : "Gratis",
+      "cerrado": "Domingo",
+		"imagen": "http://www.valencia-cityguide.com/images/attractions/iconhos.jpg",
+		"coordenadas" : [-0.381880,39.469707]
+	}, {
+		"nombre": "Palau de la Musica",
+		"direccion": "Paseo Alameda, 30, Valencia 46023.",
+      "entrada" : "Depende del evento",
+      "cerrado": "Abierto sólo en eventos",
+		"imagen": "http://www.valencia-cityguide.com/images/attractions/iconmusica.jpg",
+		"coordenadas" : [ -0.360689,39.465480]
+	}, {
+		"nombre": "Palacio de la Exposición",
+		"direccion": "Galicia 1, Valencia 46010.",
+      "entrada" : "Gratis",
+      "cerrado": "Fin de semana",
+		"imagen": "http://www.valencia-cityguide.com/images/attractions/iconexpopalace.jpg",
+		"coordenadas" : [-0.362139  , 39.472828]
+	}, {
+		"nombre": "Asilo de la Lactancia",
+		"direccion": "Amadeo de Saboya 14, Valencia 46010.",
+      "entrada" : "Gratis",
+      "cerrado": "Abre a diario",
+		"imagen": "http://www.valencia-cityguide.com/images/attractions/iconspa.jpg",
+		"coordenadas" : [ -0.402034  , 39.495626 ]
+	}, {
+		"nombre": "Palacio de Congresos",
+		"direccion": "Av. Corts Valencianes 60, Valencia.",
+      "entrada" : "Depende del evento",
+      "cerrado": "Abierto sólo en eventos",
+		"imagen": "http://www.valencia-cityguide.com/images/attractions/iconcongre.jpg",
+		"coordenadas" : [-6.215569  , 39.480174]
+	}]
+}

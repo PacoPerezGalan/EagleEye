@@ -40,7 +40,10 @@
         <activity
             android:name=".MapsActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".ListaActivity"></activity>
+        <activity android:name=".ListaActivity" />
+        <activity android:name=".FireBaseActivity" />
+        <activity android:name=".ChatActivity" />
+        <activity android:name=".IndividualChatActivity"></activity>
     </application>
 
 </manifest>

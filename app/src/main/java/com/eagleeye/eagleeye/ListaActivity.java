@@ -27,6 +27,7 @@ public class ListaActivity extends AppCompatActivity {
     LinearLayoutManager manager;
     ListaAdapter listaAdapter;
     AdaptadorJsonFallas fallasAdapter;
+    AdaptadorMonumentos monumentosAdapter;
     String [] idLugares;
     boolean pendentFoto;
     @Override
@@ -42,7 +43,8 @@ public class ListaActivity extends AppCompatActivity {
             fallasAdapter=new AdaptadorJsonFallas(MapsActivity.fallasL,this);
             recyclerView.setAdapter(fallasAdapter);
         }else if(MapsActivity.filtroSeleccionat==6){
-
+            monumentosAdapter=new AdaptadorMonumentos(MapsActivity.monumentosL,this);
+            recyclerView.setAdapter(monumentosAdapter);
         }else{
 
             idLugares=new String [MapsActivity.lugaresList.size()];

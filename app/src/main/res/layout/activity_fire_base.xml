@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_registro"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.eagleeye.eagleeye.FireBaseActivity">
+
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="60dp"
+        tools:ignore="UselessParent">
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType=""
+            android:id="@+id/email"
+            android:hint="@string/email"
+            tools:ignore="TextFields" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/pass"
+            android:hint="@string/password"
+            android:inputType="textPassword" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPersonName"
+            android:id="@+id/nikname"
+            android:hint="nickname"
+            android:visibility="invisible" />
+
+        <Button
+            android:text="@string/entrar2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="41dp"
+            android:id="@+id/btnEntrar"
+            android:background="@color/common_google_signin_btn_text_dark_focused"
+            android:textColor="@color/cardview_light_background"
+            android:textColorLink="?android:attr/colorForegroundInverse" />
+
+        <TextView
+            android:text="@string/no_est_s_registrado"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="46dp"
+            android:id="@+id/registrar"
+            android:gravity="center_horizontal"
+            android:textSize="20sp"
+            android:textColor="@color/colorPrimaryDark" />
+
+    </LinearLayout>
+
+
+</LinearLayout>

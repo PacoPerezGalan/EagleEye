@@ -131,7 +131,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
     Button btn_chat;
 
     static ArrayList<Fallas> fallasL;
-
+    static ArrayList<Monumentos>monumentosL;
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -144,6 +144,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         btn_lista=(Button) findViewById(R.id.btn_lista);
         btn_chat=(Button) findViewById(R.id.btn_chat);
         fallasL=new ArrayList<Fallas>();
+        monumentosL=new ArrayList<Monumentos>();
 
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -191,6 +192,14 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
             @Override
             public void onClick(View view) {
                 Intent i=new Intent(getApplicationContext(),ListaActivity.class);
+                startActivity(i);
+            }
+        });
+
+        btn_chat.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i=new Intent(getApplicationContext(),FireBaseActivity.class);
                 startActivity(i);
             }
         });
@@ -249,7 +258,19 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
 
             }
         }else if(filtroSeleccionat==6){
+            for(int i=0;i<monumentosL.size();i++){
 
+
+                Double lat=monumentosL.get(i).getLatitud();
+                Double lng=monumentosL.get(i).getLongitud();
+                LatLng coordenades = new LatLng(lat, lng);
+
+                markerArrayList.add(mMap.addMarker(new MarkerOptions()
+                        .position(coordenades)
+                        .title(monumentosL.get(i).getNombre())
+                        .icon(BitmapDescriptorFactory.fromBitmap(bitmap))));
+
+            }
         }else{
             for(int i=0;i<lugaresList.size();i++){
 
@@ -310,7 +331,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                     }else if(filtroSeleccionat==5){
                         new FallesAsyncTask().execute();
                     }else{
-
+                        new MonumentosAsyncTask().execute();
                     }
 
                 }
@@ -707,7 +728,71 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         }
     }
 
+////////////////monumentos////////////////////////////////////////////////////////////////////////////////////////
+public class MonumentosAsyncTask extends AsyncTask<String,Void,String> {
+    @Override
+    protected void onPreExecute() {
+        super.onPreExecute();
+    }
 
+    @Override
+    protected String doInBackground(String... urls) {
+        Resources res = getResources();
+        InputStream is = res.openRawResource(R.raw.monumentos);
+        Scanner scanner = new Scanner(is);
+
+        StringBuilder builder = new StringBuilder();
+
+        while (scanner.hasNextLine()){
+            builder.append(scanner.nextLine());
+        }
+
+        parseJsonMonumentos(builder.toString());
+
+
+        return null;
+    }
+
+    @Override
+    protected void onPostExecute(String s) {
+        super.onPostExecute(s);
+        pintarLugaresMapa();
+    }
+}
+private void parseJsonMonumentos (String doc){
+    if (doc != null){
+
+        try {
+            JSONObject jsonObject = new JSONObject(doc);
+            JSONArray jsonArray = jsonObject.getJSONArray("monumentos");
+            for (int i = 0; i< jsonArray.length();i++){
+                JSONObject jsonObject1 = jsonArray.getJSONObject(i);
+                String nombre = jsonObject1.getString("nombre");
+                String direccion = jsonObject1.getString("direccion");
+                String entrada = jsonObject1.getString("entrada");
+                String cerrado = jsonObject1.getString("cerrado");
+                String imagen = jsonObject1.getString("imagen");
+
+
+                Monumentos monumentos=new Monumentos();
+                monumentos.setNombre(nombre);
+                monumentos.setDireccion(direccion);
+                monumentos.setEntrada(entrada);
+                monumentos.setCerrado(cerrado);
+                monumentos.setImagen(imagen);
+                monumentos.setLongitud(jsonObject1.getJSONArray("coordenadas").getDouble(0));
+                monumentos.setLatitud(jsonObject1.getJSONArray("coordenadas").getDouble(1));
+
+                Log.d("asdf","nombre -> "+nombre+" longitud -> "+ jsonObject1.getJSONArray("coordenadas").getDouble(0)+" latitud -> "+ jsonObject1.getJSONArray("coordenadas").getDouble(1) );
+                monumentosL.add(monumentos);
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+    }
+}
 
 
 }
+
+

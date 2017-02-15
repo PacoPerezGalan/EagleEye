@@ -7,4 +7,20 @@
     <string name="nombre">Nombre:</string>
     <string name="seccion">Sección:</string>
     <string name="lema">Lema:</string>
+
+    <string name="entrada">Entrada:</string>
+    <string name="cerrado">Cerrado:</string>
+    <string name="direccion">Dirección:</string>
+
+
+    <string name="mensaje">Mensaje...</string>
+    <string name="password">password</string>
+    <string name="registrarse">Registrarse</string>
+    <string name="email">email</string>
+    <string name="ya_est_s_registrado">¿Ya estás registrado?</string>
+    <string name="entrar">logearse</string>
+    <string name="sign_out">Sign Out</string>
+    <string name="no_est_s_registrado">¿No estás registrado?</string>
+    <string name="entrar2">Entrar</string>
+    <string name="registrarse2">Registrarse</string>
 </resources>

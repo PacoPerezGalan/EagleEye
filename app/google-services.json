@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "1005289809127",
+    "firebase_url": "https://eagleeye-565ad.firebaseio.com",
+    "project_id": "eagleeye-565ad",
+    "storage_bucket": "eagleeye-565ad.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1005289809127:android:706e5d1f05166575",
+        "android_client_info": {
+          "package_name": "com.eagleeye.eagleeye"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1005289809127-tjatne21ic35lv8ufvpd7prls8fkr1jb.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.eagleeye.eagleeye",
+            "certificate_hash": "0D892BD4C0BDC4B005B2BA2264BDF909CE03CFFB"
+          }
+        },
+        {
+          "client_id": "1005289809127-gadejsnc3ccugns2acvqonlffnjbhf2e.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCsA--hlK0jNAgsX0DGHEuwWsHlGegCemM"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1005289809127-gadejsnc3ccugns2acvqonlffnjbhf2e.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
