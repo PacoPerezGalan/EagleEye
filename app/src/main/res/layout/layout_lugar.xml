@@ -98,8 +98,8 @@
             android:layout_height="wrap_content"
             android:isIndicator="true"
             android:id="@+id/ratingBar"
-            style="@android:style/Widget.DeviceDefault.RatingBar.Small"
-            android:background="@color/colorPrimary" />
+            style="@android:style/Widget.Holo.Light.RatingBar.Small"
+            />
 
 
     </LinearLayout>

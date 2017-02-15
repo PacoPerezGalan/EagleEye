@@ -20,11 +20,13 @@ import com.google.android.gms.location.places.PlacePhotoResult;
 import com.google.android.gms.location.places.Places;
 
 import java.util.ArrayList;
+import java.util.Map;
 
 public class ListaActivity extends AppCompatActivity {
     RecyclerView recyclerView;
     LinearLayoutManager manager;
     ListaAdapter listaAdapter;
+    AdaptadorJsonFallas fallasAdapter;
     String [] idLugares;
     boolean pendentFoto;
     @Override
@@ -32,46 +34,61 @@ public class ListaActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lista);
 
-        idLugares=new String [MapsActivity.lugaresList.size()];
-
         recyclerView=(RecyclerView) findViewById(R.id.recycler);
         manager=new LinearLayoutManager(this);
+        recyclerView.setLayoutManager(manager);
+
+        if(MapsActivity.filtroSeleccionat==5){
+            fallasAdapter=new AdaptadorJsonFallas(MapsActivity.fallasL,this);
+            recyclerView.setAdapter(fallasAdapter);
+        }else if(MapsActivity.filtroSeleccionat==6){
+
+        }else{
+
+            idLugares=new String [MapsActivity.lugaresList.size()];
 
 
-        for(int i=0;i<MapsActivity.lugaresList.size();i++){
-            idLugares[i]=MapsActivity.lugaresList.get(i).getId();
+
+
+            for(int i=0;i<MapsActivity.lugaresList.size();i++){
+                idLugares[i]=MapsActivity.lugaresList.get(i).getId();
+            }
+
+
+            PendingResult<PlaceBuffer> pendingResult = Places.GeoDataApi.getPlaceById(MapsActivity.mGoogleApiClient, idLugares);
+            pendingResult.setResultCallback(new ResultCallback<PlaceBuffer>() {
+                @Override
+                public void onResult(PlaceBuffer places) {
+                    if (places.getStatus().isSuccess() && places.getCount() > 0) {
+                        for (int i = 0; i < places.getCount(); i++) {
+                            Place myPlace = places.get(i);
+                            Log.i("place", "Place nombre: " + myPlace.getName() + "   l es= " + i);
+
+                            MapsActivity.lugaresList.get(i).setAdress(myPlace.getAddress().toString());
+                            Log.i("place", "Place direccion: " + myPlace.getAddress().toString());
+                            MapsActivity.lugaresList.get(i).setWeb(myPlace.getWebsiteUri());
+                            Log.i("place", "Place web: " + myPlace.getWebsiteUri());
+                            MapsActivity.lugaresList.get(i).setPhone(myPlace.getPhoneNumber().toString());
+                            Log.i("place", "Place telf: " + myPlace.getPhoneNumber());
+                            MapsActivity.lugaresList.get(i).setRating(myPlace.getRating());
+                            Log.i("place", "Place valoracion: " + myPlace.getRating());
+
+                        }
+
+                        listaAdapter=new ListaAdapter(MapsActivity.lugaresList);
+
+                        recyclerView.setAdapter(listaAdapter);
+                    } else {
+                        Log.e("place", "Place not found");
+                    }
+                    places.release();
+                }
+            });
         }
 
 
-        PendingResult<PlaceBuffer> pendingResult = Places.GeoDataApi.getPlaceById(MapsActivity.mGoogleApiClient, idLugares);
-        pendingResult.setResultCallback(new ResultCallback<PlaceBuffer>() {
-            @Override
-            public void onResult(PlaceBuffer places) {
-                if (places.getStatus().isSuccess() && places.getCount() > 0) {
-                    for (int i = 0; i < places.getCount(); i++) {
-                        Place myPlace = places.get(i);
-                        Log.i("place", "Place nombre: " + myPlace.getName() + "   l es= " + i);
 
-                        MapsActivity.lugaresList.get(i).setAdress(myPlace.getAddress().toString());
-                        Log.i("place", "Place direccion: " + myPlace.getAddress().toString());
-                        MapsActivity.lugaresList.get(i).setWeb(myPlace.getWebsiteUri());
-                        Log.i("place", "Place web: " + myPlace.getWebsiteUri());
-                        MapsActivity.lugaresList.get(i).setPhone(myPlace.getPhoneNumber().toString());
-                        Log.i("place", "Place telf: " + myPlace.getPhoneNumber());
-                        MapsActivity.lugaresList.get(i).setRating(myPlace.getRating());
-                        Log.i("place", "Place valoracion: " + myPlace.getRating());
 
-                    }
-                    listaAdapter=new ListaAdapter(MapsActivity.lugaresList);
-
-                    recyclerView.setLayoutManager(manager);
-                    recyclerView.setAdapter(listaAdapter);
-                } else {
-                    Log.e("place", "Place not found");
-                }
-                places.release();
-            }
-        });
         /*
         pendentFoto=false;
         for(int i=0;i<idLugares.length;i++) {

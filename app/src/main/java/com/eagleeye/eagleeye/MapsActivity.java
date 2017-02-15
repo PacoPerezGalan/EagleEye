@@ -6,8 +6,10 @@ import android.Manifest;
 
 import android.app.Activity;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 
@@ -82,6 +84,7 @@ import java.net.ProtocolException;
 import java.net.URL;
 
 import java.util.ArrayList;
+import java.util.Scanner;
 
 import static android.R.attr.bitmap;
 import static android.R.attr.width;
@@ -126,6 +129,9 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
     static String filtroTypes;
     Button btn_lista;
     Button btn_chat;
+
+    static ArrayList<Fallas> fallasL;
+
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -137,6 +143,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         filtroTypes="lodging|campground|rv_park";
         btn_lista=(Button) findViewById(R.id.btn_lista);
         btn_chat=(Button) findViewById(R.id.btn_chat);
+        fallasL=new ArrayList<Fallas>();
 
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -206,10 +213,10 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                 filtroTypes="doctor|health|hospital|pharmacy|embassy|police|city_hall";
                 break;
             case 5:
-                filtroTypes="lodging|establishment|campground|rv_park";
+                filtroTypes="";
                 break;
             case 6:
-                filtroTypes="lodging|establishment|campground|rv_park";
+                filtroTypes="";
                 break;
             case 7:
                 filtroTypes="night_club|bowling_alley|casino|stadium|park|amusement_park|aquarium|zoo|spa|shopping_mall|museum|art_gallery|movie_theater";
@@ -222,67 +229,43 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
 
     }
 
-    String [] idLugares;
 
     public void pintarLugaresMapa(){
-        /*
-        idLugares=new String [lugaresList.size()];
-
-        for(int i=0;i<lugaresList.size();i++){
-            idLugares[i]=lugaresList.get(i).getId();
-        }
-
-            PendingResult<PlaceBuffer> pendingResult = Places.GeoDataApi.getPlaceById(mGoogleApiClient, idLugares);
-            pendingResult.setResultCallback(new ResultCallback<PlaceBuffer>() {
-                @Override
-                public void onResult(PlaceBuffer places) {
-                    if (places.getStatus().isSuccess() && places.getCount() > 0) {
-                        for (int i = 0; i < places.getCount(); i++) {
-                            Place myPlace = places.get(i);
-                            Log.i("place", "Place nombre: " + myPlace.getName() + "   l es= " + i);
-
-                            lugaresList.get(i).setAdress(myPlace.getAddress().toString());
-                            Log.i("place", "Place direccion: " + myPlace.getAddress().toString());
-                            lugaresList.get(i).setWeb(myPlace.getWebsiteUri());
-                            Log.i("place", "Place web: " + myPlace.getWebsiteUri());
-                            lugaresList.get(i).setPhone(myPlace.getPhoneNumber().toString());
-                            Log.i("place", "Place telf: " + myPlace.getPhoneNumber());
-                            lugaresList.get(i).setRating(myPlace.getRating());
-                            Log.i("place", "Place valoracion: " + myPlace.getRating());
-                        }
-                    } else {
-                        Log.e("place", "Place not found");
-                    }
-                    places.release();
-                }
-            });
-
-        */
 
         Bitmap bitmap= Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(),icon[filtroSeleccionat-1]),100,100,false);
 
-        for(int i=0;i<lugaresList.size();i++){
+        if(filtroSeleccionat==5){
+            for(int i=0;i<fallasL.size();i++){
 
 
-            Double lat=lugaresList.get(i).getLat();
-            Double lng=lugaresList.get(i).getLng();
-            LatLng coordenades = new LatLng(lat, lng);
-            /*
-            String snippet="";
-            if(lugaresList.get(i).getRating()>0.0){
-                snippet="Valoracion : "+lugaresList.get(i).getRating();
+                Double lat=fallasL.get(i).getLatitud();
+                Double lng=fallasL.get(i).getLongitud();
+                LatLng coordenades = new LatLng(lat, lng);
+
+                markerArrayList.add(mMap.addMarker(new MarkerOptions()
+                        .position(coordenades)
+                        .title(fallasL.get(i).getNombre())
+                        .icon(BitmapDescriptorFactory.fromBitmap(bitmap))));
+
             }
-            if(lugaresList.get(i).getPhone()!=null){
-                snippet=snippet+"  Telf:"+lugaresList.get(i).getPhone();
-            }
-            */
-            markerArrayList.add(mMap.addMarker(new MarkerOptions()
-                    .position(coordenades)
-                    .title(lugaresList.get(i).getName())
-                    //.snippet(snippet)
-                    .icon(BitmapDescriptorFactory.fromBitmap(bitmap))));
+        }else if(filtroSeleccionat==6){
 
+        }else{
+            for(int i=0;i<lugaresList.size();i++){
+
+
+                Double lat=lugaresList.get(i).getLat();
+                Double lng=lugaresList.get(i).getLng();
+                LatLng coordenades = new LatLng(lat, lng);
+
+                markerArrayList.add(mMap.addMarker(new MarkerOptions()
+                        .position(coordenades)
+                        .title(lugaresList.get(i).getName())
+                        .icon(BitmapDescriptorFactory.fromBitmap(bitmap))));
+
+            }
         }
+
 
     }
 
@@ -316,10 +299,20 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
             @Override
             public void onCameraIdle() {
                 if(razon !=2 || botonUbicacionPulsado) {
+
                     mMap.clear();
                     lugaresList.clear();
+                    fallasL.clear();
                     markerArrayList.clear();
-                    comprovaConnexio();
+
+                    if(filtroSeleccionat!=5 && filtroSeleccionat!=6){
+                        comprovaConnexio();
+                    }else if(filtroSeleccionat==5){
+                        new FallesAsyncTask().execute();
+                    }else{
+
+                    }
+
                 }
                 botonUbicacionPulsado=false;
                 //Toast.makeText(getApplicationContext(),"menejant camara",Toast.LENGTH_SHORT).show();
@@ -611,7 +604,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
             return true;
         }
 
-        if(item.getItemId() == android.R.id.home) {
+        if(id == android.R.id.home) {
 
 
             if (drawerOpen) {
@@ -645,68 +638,76 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
 
 
 
-    /* coses que al final no se gasten////////////////////////////////////////////////////////////////
+    ///////falles//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-    private void agregarMarcador(Double lat, Double lng, Bitmap icon) {
-        LatLng coordenades = new LatLng(lat, lng);
-        CameraUpdate mUbicacio = CameraUpdateFactory.newLatLngZoom(coordenades, 15);
-        if (marcador != null) marcador.remove();
+    public class  FallesAsyncTask extends AsyncTask<String,Void,String> {
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
 
-        marcador = mMap.addMarker(new MarkerOptions()
-                .position(coordenades)
-                .title("La meua ubicacio")
-                .icon(BitmapDescriptorFactory.fromResource(R.drawable.image_ubicacio)));
-        //BitmapDescriptorFactory.fromResource(R.drawable.image_ubicacio))      BitmapDescriptorFactory.fromBitmap(icon))
-        mMap.animateCamera(mUbicacio);
-    }
-
-
-    private void meuaUbicacio() {
-
-        ActivityCompat.requestPermissions(MapsActivity.this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 1);
-        ActivityCompat.requestPermissions(MapsActivity.this, new String[]{Manifest.permission.ACCESS_COARSE_LOCATION}, 2);
-
-        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            Toast.makeText(this, "No va la ubicacio ", Toast.LENGTH_SHORT).show();
-            return;
         }
 
-        locationManager = (LocationManager) getApplicationContext().getSystemService(getApplicationContext().LOCATION_SERVICE);
-        locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, locationListener);
-        location = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
-        if (location != null) {
-            actualitzarUbicacio(location);
-        } else {
-            Toast.makeText(this, "meua Ubicacio: location null", Toast.LENGTH_SHORT).show();
-        }
-    }
+        @Override
+        protected String doInBackground(String... urls) {
+            Resources res = getResources();
+            InputStream is = res.openRawResource(R.raw.monumentos_falleros);
+            Scanner scanner = new Scanner(is);
 
+            StringBuilder builder = new StringBuilder();
 
-    int PLACE_PICKER_REQUEST = 1;
-
-    public void getGooglePlaces() {
-
-        PlacePicker.IntentBuilder builder = new PlacePicker.IntentBuilder();
-
-        try {
-            startActivityForResult(builder.build(this), PLACE_PICKER_REQUEST);
-        } catch (GooglePlayServicesRepairableException e) {
-            e.printStackTrace();
-        } catch (GooglePlayServicesNotAvailableException e) {
-            e.printStackTrace();
-        }
-    }
-
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode == PLACE_PICKER_REQUEST) {
-            if (resultCode == RESULT_OK) {
-                Place place = PlacePicker.getPlace(data, this);
-                String toastMsg = String.format("Place: %s", place.getName());
-                Toast.makeText(this, toastMsg, Toast.LENGTH_LONG).show();
-
-
+            while (scanner.hasNextLine()){
+                builder.append(scanner.nextLine());
             }
+
+            parseJsonFalles(builder.toString());
+
+
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(String s) {
+            super.onPostExecute(s);
+            pintarLugaresMapa();
         }
     }
-**/
+
+    private void parseJsonFalles(String doc) {
+        if (doc != null){
+
+            try {
+                JSONObject jsonObject = new JSONObject(doc);
+                JSONArray jsonArray = jsonObject.getJSONArray("features");
+                for (int i = 0; i<jsonArray.length();i++){
+                    JSONObject jsonObject1 = jsonArray.getJSONObject(i);
+                    JSONObject jsonObject2 = jsonObject1.getJSONObject("properties");
+                    String nombre = jsonObject2.getString("nombre");
+                    String seccion = jsonObject2.getString("seccion");
+                    String lema = jsonObject2.getString("lema");
+                    String imgSource = jsonObject2.getString("boceto");
+
+                    Fallas fallas = new Fallas();
+                    fallas.setNombre(nombre);
+                    fallas.setSeccion(seccion);
+                    fallas.setLema(lema);
+                    fallas.setBoceto(imgSource);
+                    fallas.setLongitud(jsonObject1.getJSONObject("geometry").getJSONArray("coordinates").getDouble(0));
+                    fallas.setLatitud(jsonObject1.getJSONObject("geometry").getJSONArray("coordinates").getDouble(1));
+
+                    Log.d("asdf","Nombre -> "+nombre+"Longitud ->"+jsonObject1.getJSONObject("geometry").getJSONArray("coordinates").getDouble(0)+" Latitud -> "+jsonObject1.getJSONObject("geometry").getJSONArray("coordinates").getDouble(1));
+
+                    fallasL.add(fallas);
+
+                }
+
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
+        }
+    }
+
+
+
+
 }
