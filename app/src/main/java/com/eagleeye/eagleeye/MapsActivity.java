@@ -133,6 +133,10 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
     static ArrayList<Fallas> fallasL;
     static ArrayList<Monumentos>monumentosL;
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    public void onBackPressed() {
+        super.onBackPressed();
+        overridePendingTransition(R.anim.left_in,R.anim.left_out);
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -140,7 +144,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
 
         lugaresList=new ArrayList<Lugar>();
         markerArrayList=new ArrayList<Marker>();
-        filtroTypes="lodging|campground|rv_park";
+        filtroTypes="";
         btn_lista=(Button) findViewById(R.id.btn_lista);
         btn_chat=(Button) findViewById(R.id.btn_chat);
         fallasL=new ArrayList<Fallas>();
@@ -158,7 +162,8 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
 
         recyclerView.setLayoutManager(layoutManager);
 
-        filtroSeleccionat=1;
+        Bundle b=getIntent().getExtras();
+        filtroSeleccionat=b.getInt("filtro");
 
         adapter = new NavDrawerAdapter(icon2, titulo);
 
@@ -193,6 +198,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
             public void onClick(View view) {
                 Intent i=new Intent(getApplicationContext(),ListaActivity.class);
                 startActivity(i);
+                overridePendingTransition(R.anim.left_in,R.anim.left_out);
             }
         });
 
@@ -201,6 +207,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
             public void onClick(View view) {
                 Intent i=new Intent(getApplicationContext(),FireBaseActivity.class);
                 startActivity(i);
+                overridePendingTransition(R.anim.left_in,R.anim.left_out);
             }
         });
 

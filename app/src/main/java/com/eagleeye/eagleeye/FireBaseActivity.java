@@ -30,7 +30,10 @@ public class FireBaseActivity extends Activity {
     boolean nuevoUsuario = false;
 
 
-
+    public void onBackPressed() {
+        super.onBackPressed();
+        overridePendingTransition(R.anim.left_in,R.anim.left_out);
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -120,6 +123,7 @@ public class FireBaseActivity extends Activity {
                             Snackbar.make(activity_registro, "Registrado", Snackbar.LENGTH_SHORT).show();
                             i = new Intent(getApplicationContext(),ChatActivity.class);
                             startActivity(i);
+                            overridePendingTransition(R.anim.left_in,R.anim.left_out);
                         }
 
                     }
@@ -137,6 +141,7 @@ public class FireBaseActivity extends Activity {
                             Snackbar.make(activity_registro, "Bienvenido", Snackbar.LENGTH_SHORT).show();
                             i = new Intent(getApplicationContext(),ChatActivity.class);
                             startActivity(i);
+                            overridePendingTransition(R.anim.left_in,R.anim.left_out);
                         }
 
                     }

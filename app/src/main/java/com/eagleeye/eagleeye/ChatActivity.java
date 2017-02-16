@@ -38,6 +38,10 @@ public class ChatActivity extends AppCompatActivity {
     String nombre_usuario;
     private String mId;
 
+    public void onBackPressed() {
+        super.onBackPressed();
+        overridePendingTransition(R.anim.left_in,R.anim.left_out);
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

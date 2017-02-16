@@ -43,7 +43,8 @@
         <activity android:name=".ListaActivity" />
         <activity android:name=".FireBaseActivity" />
         <activity android:name=".ChatActivity" />
-        <activity android:name=".IndividualChatActivity"></activity>
+        <activity android:name=".IndividualChatActivity" />
+        <activity android:name=".FiltroActivity"></activity>
     </application>
 
 </manifest>

@@ -30,6 +30,11 @@ public class ListaActivity extends AppCompatActivity {
     AdaptadorMonumentos monumentosAdapter;
     String [] idLugares;
     boolean pendentFoto;
+
+    public void onBackPressed() {
+        super.onBackPressed();
+        overridePendingTransition(R.anim.left_in,R.anim.left_out);
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

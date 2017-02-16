@@ -23,10 +23,10 @@ public class MainActivity extends AppCompatActivity {
         entrar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i=new Intent(getApplicationContext(),MapsActivity.class);
+                Intent i=new Intent(getApplicationContext(),FiltroActivity.class);
 
                 startActivity(i);
-                //overridePendingTransition(R.anim.left_out,R.anim.left_in);
+                overridePendingTransition(R.anim.left_in,R.anim.left_out);
 
             }
         });
