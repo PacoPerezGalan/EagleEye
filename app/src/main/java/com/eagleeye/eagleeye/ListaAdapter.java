@@ -1,6 +1,8 @@
 package com.eagleeye.eagleeye;
 
+import android.app.Activity;
 import android.app.NotificationManager;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.media.RingtoneManager;
@@ -29,11 +31,11 @@ import java.util.ArrayList;
 
 public class ListaAdapter extends RecyclerView.Adapter<ListaAdapter.itemViewHolder> {
     ArrayList<Lugar> lugarList;
-
     public static class itemViewHolder extends RecyclerView.ViewHolder {
-        TextView lugar,direccion,localizacion,telefono,web;
+        TextView lugar,direccion,telefono,web;
         RatingBar ratingBar;
-        CardView card;
+        ImageView ubicacio;
+
         public itemViewHolder(View v) {
             super(v);
             lugar= (TextView) v.findViewById(R.id.tv_lugar);
@@ -42,7 +44,7 @@ public class ListaAdapter extends RecyclerView.Adapter<ListaAdapter.itemViewHold
             web= (TextView) v.findViewById(R.id.tv_web);
             ratingBar=(RatingBar) v.findViewById(R.id.ratingBar);
 
-            card= (CardView) v.findViewById(R.id.card);
+            ubicacio= (ImageView) v.findViewById(R.id.ubicacio);
 
         }
 
@@ -95,17 +97,22 @@ public class ListaAdapter extends RecyclerView.Adapter<ListaAdapter.itemViewHold
         }
 
 
-
         if(lugarList.get(position).getRating()!=-1.0){
             holder.ratingBar.setRating(lugarList.get(holder.getAdapterPosition()).getRating());
         }else{
             holder.ratingBar.setVisibility(View.INVISIBLE);
         }
 
-        holder.card.setOnClickListener(new View.OnClickListener() {
+        holder.ubicacio.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(view.getContext(),lugarList.get(holder.getAdapterPosition()).getName(),Toast.LENGTH_SHORT).show();
+                Bundle b=new Bundle();
+                b.putDouble("lat",lugarList.get(holder.getAdapterPosition()).getLat());
+                b.putDouble("lng",lugarList.get(holder.getAdapterPosition()).getLng());
+                ((Activity)ListaActivity.context).getIntent().putExtras(b);
+                ((Activity)ListaActivity.context).setResult(Activity.RESULT_OK);
+                ((Activity)ListaActivity.context).finish();
+                //Toast.makeText(view.getContext(),lugarList.get(holder.getAdapterPosition()).getName(),Toast.LENGTH_SHORT).show();
             }
         });
 

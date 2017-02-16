@@ -208,12 +208,23 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
             @Override
             public void onClick(View view) {
                 Intent i=new Intent(getApplicationContext(),FireBaseActivity.class);
-                startActivity(i);
+                startActivityForResult(i,1);
                 overridePendingTransition(R.anim.left_in,R.anim.left_out);
             }
         });
 
     }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode==1){
+            Bundle b =data.getExtras();
+            Toast.makeText(getApplicationContext(),b.getDouble("lat")+" "+b.getDouble("lng"),Toast.LENGTH_SHORT).show();
+            mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(b.getDouble("lat"),b.getDouble("lng")), 15));
+        }
+    }
+
     public static void canviarFiltroSeleccionat(int s){
         filtroSeleccionat=s;
         adapter.notifyDataSetChanged();
@@ -368,9 +379,9 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         if (location != null) {
             lat = location.getLatitude();
             lng = location.getLongitude();
-            Toast.makeText(this, "Localizacion chachi: " + lat + "   " + lng, Toast.LENGTH_SHORT).show();
+            //Toast.makeText(this, "Localizacion: " + lat + "   " + lng, Toast.LENGTH_SHORT).show();
             //agregarMarcador(lat, lng);
-            mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(lat,lng), 15));
+            mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(lat,lng), 16));
         } else {
 
         }

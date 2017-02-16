@@ -1,5 +1,6 @@
 package com.eagleeye.eagleeye;
 
+import android.content.Context;
 import android.graphics.Bitmap;
 import android.os.AsyncTask;
 import android.support.annotation.NonNull;
@@ -30,16 +31,18 @@ public class ListaActivity extends AppCompatActivity {
     AdaptadorMonumentos monumentosAdapter;
     String [] idLugares;
     boolean pendentFoto;
+    static Context context;
 
     public void onBackPressed() {
         super.onBackPressed();
         overridePendingTransition(R.anim.right_in,R.anim.right_out);
     }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lista);
-
+        context=this;
         recyclerView=(RecyclerView) findViewById(R.id.recycler);
         manager=new LinearLayoutManager(this);
         recyclerView.setLayoutManager(manager);
