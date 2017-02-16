@@ -17,18 +17,23 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 
+
 public class IndividualChatActivity extends AppCompatActivity {
     private Button btn_enviar;
     private EditText input;
     private TextView chat_conversacion;
 
     private String nombre_usuario;
+    private String nombre_Emisor;
     private String temp_key;
 
     //Objeto de Database con el que se lograra comunicar con Firebase
     private DatabaseReference bd_Firebase;
 
-
+    public void onBackPressed() {
+        super.onBackPressed();
+        overridePendingTransition(R.anim.right_in,R.anim.right_out);
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,8 +45,8 @@ public class IndividualChatActivity extends AppCompatActivity {
 
         // primero recoger el nombre enviado desde el adaptador
         nombre_usuario = getIntent().getExtras().get("nombre").toString();
+        nombre_Emisor = getIntent().getExtras().get("nombreE").toString();
         setTitle(" Chat con -"+nombre_usuario);
-
         // Crear una instancia con una referencia por nombre de usuario
         // se creara una tabla aparte del chat masivo
         bd_Firebase = FirebaseDatabase.getInstance().getReference().child(nombre_usuario);
@@ -63,7 +68,7 @@ public class IndividualChatActivity extends AppCompatActivity {
 
                 // Crear un nuevo HasMap que almacenara la información -usuario,msg-
                 Map<String,Object> map2 = new HashMap<String, Object>();
-                map2.put("usuario_mensaje",nombre_usuario);
+                map2.put("usuario_mensaje",nombre_Emisor);
                 map2.put("texto_mensaje",input.getText().toString());
 
                 bd_Firebase2.updateChildren(map2);
@@ -112,7 +117,9 @@ public class IndividualChatActivity extends AppCompatActivity {
             user_msg = (String) ((DataSnapshot)i.next()).getValue();
             msg_chat = (String) ((DataSnapshot)i.next()).getValue();
 
-            chat_conversacion.append(user_msg+" : "+msg_chat+"\n");
+            chat_conversacion.append(msg_chat+": \n "+user_msg+"\n\n");
+
+            input.setText("");
         }
     }
 }

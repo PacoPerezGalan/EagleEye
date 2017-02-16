@@ -33,7 +33,7 @@ public class ListaActivity extends AppCompatActivity {
 
     public void onBackPressed() {
         super.onBackPressed();
-        overridePendingTransition(R.anim.left_in,R.anim.left_out);
+        overridePendingTransition(R.anim.right_in,R.anim.right_out);
     }
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -24,6 +24,7 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
@@ -135,7 +136,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     public void onBackPressed() {
         super.onBackPressed();
-        overridePendingTransition(R.anim.left_in,R.anim.left_out);
+        overridePendingTransition(R.anim.right_in,R.anim.right_out);
     }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -193,6 +194,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         final SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
 
+        btn_lista.setEnabled(false);
         btn_lista.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -388,17 +390,17 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
             new ConectaURL().execute("https://maps.googleapis.com/maps/api/place/nearbysearch/json?key=AIzaSyB38CQ8uYvqAmZfTnXAjX1A3IPEYHun-9s&location="+mMap.getCameraPosition().target.latitude+","+mMap.getCameraPosition().target.longitude+"&rankby=distance&types="+filtroTypes);
             return true;
         } else {
-            /*
-            Snackbar mySnackbar = Snackbar.make(findViewById(R.id.recyclerPost), "No hi ha connexió a la Xarxa", Snackbar.LENGTH_INDEFINITE);
 
-            mySnackbar.setAction("Tornar a provar", new View.OnClickListener() {
+            Snackbar mySnackbar = Snackbar.make(findViewById(R.id.map), "No hay conexion", Snackbar.LENGTH_INDEFINITE);
+
+            mySnackbar.setAction("Reintentar", new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    xarxa = comprovaConnexio();
+                    comprovaConnexio();
                 }
             });
             mySnackbar.show();
-            */
+
             return false;
         }
     }
@@ -408,6 +410,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
+            btn_lista.setEnabled(false);
 
         }
 
@@ -429,7 +432,8 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         protected void onPostExecute(String s) {
             super.onPostExecute(s);
             pintarLugaresMapa();
-            //adaptadorRecyclerPost.notifyDataSetChanged();
+            btn_lista.setEnabled(true);
+
 
         }
     }
@@ -672,7 +676,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
-
+            btn_lista.setEnabled(false);
         }
 
         @Override
@@ -697,6 +701,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         protected void onPostExecute(String s) {
             super.onPostExecute(s);
             pintarLugaresMapa();
+            btn_lista.setEnabled(true);
         }
     }
 
@@ -740,6 +745,7 @@ public class MonumentosAsyncTask extends AsyncTask<String,Void,String> {
     @Override
     protected void onPreExecute() {
         super.onPreExecute();
+        btn_lista.setEnabled(false);
     }
 
     @Override
@@ -764,6 +770,7 @@ public class MonumentosAsyncTask extends AsyncTask<String,Void,String> {
     protected void onPostExecute(String s) {
         super.onPostExecute(s);
         pintarLugaresMapa();
+        btn_lista.setEnabled(true);
     }
 }
 private void parseJsonMonumentos (String doc){

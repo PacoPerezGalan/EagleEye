@@ -86,8 +86,10 @@ public class AdaptadorChat extends RecyclerView.Adapter<AdaptadorChat.ViewHolder
                 //identificar el nombre del item y enviarlo al siguiente activity
                 // esta acción identificara con quien se creara el chat
                 String nombre = mensajesChatL.get(position).getUsuario_mensaje();
+                String nombreEmisor = mensajesChatL.get(0).getUsuario_mensaje();
                 Intent i = new Intent(view.getContext(),IndividualChatActivity.class);
                 i.putExtra("nombre",nombre);
+                i.putExtra("nombreE",nombreEmisor);
                 view.getContext().startActivity(i);
 
             }

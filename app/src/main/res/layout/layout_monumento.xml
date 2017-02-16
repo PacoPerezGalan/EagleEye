@@ -3,10 +3,11 @@
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
     android:id="@+id/card1"
     android:layout_width="match_parent"
-    card_view:cardCornerRadius="4dp"
+    card_view:cardCornerRadius="6dp"
     card_view:cardElevation="4dp"
     card_view:cardUseCompatPadding="true"
     card_view:cardPreventCornerOverlap="false"
+    card_view:cardBackgroundColor="@color/colorAccent"
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_height="150dp">
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -16,8 +17,7 @@
     android:clickable="false"
     android:descendantFocusability="blocksDescendants"
     android:focusable="false"
-    android:focusableInTouchMode="false"
-    android:background="#537de8">
+    android:focusableInTouchMode="false">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -47,22 +47,14 @@
                 android:layout_marginTop="15dp">
 
                 <TextView
-                    android:text="@string/nombre"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/nombre_titulo"
-                    android:layout_marginRight="10dp"
-                    android:textSize="10sp"
-                    android:textColor="@android:color/holo_orange_light" />
-
-                <TextView
                     android:id="@+id/nombre"
+                    android:textStyle="bold"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="nombre"
                     android:textAppearance="?android:attr/textAppearanceLarge"
-                    android:textColor="?attr/colorBackgroundFloating"
-                    android:textSize="12sp"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="18sp"
                    />
 
             </LinearLayout>
@@ -77,10 +69,11 @@
 
                 <TextView
                     android:text="@string/entrada"
+                    android:textStyle="bold"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/entrada_titulo"
-                    android:textSize="10sp"
+                    android:textSize="14sp"
                     android:textColor="@android:color/holo_orange_light"
                     android:layout_marginRight="10dp" />
 
@@ -90,8 +83,8 @@
                     android:layout_height="wrap_content"
                     android:text="entrada"
                     android:textAppearance="?android:attr/textAppearanceSmall"
-                    android:textColor="?attr/colorBackgroundFloating"
-                    android:textSize="12sp" />
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="14sp" />
 
             </LinearLayout>
 
@@ -107,9 +100,10 @@
                     android:text="@string/cerrado"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:textStyle="bold"
                     android:id="@+id/cerrado_titulo"
                     android:layout_marginRight="10dp"
-                    android:textSize="10sp"
+                    android:textSize="14sp"
                     android:textColor="@android:color/holo_orange_light" />
 
                 <TextView
@@ -118,8 +112,8 @@
                     android:layout_height="wrap_content"
                     android:text="cerrado"
                     android:textAppearance="?android:attr/textAppearanceSmall"
-                    android:textColor="?attr/colorBackgroundFloating"
-                    android:textSize="12sp" />
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="14sp" />
             </LinearLayout>
 
         </LinearLayout>
@@ -134,9 +128,10 @@
             android:text="@string/direccion"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textStyle="bold"
             android:id="@+id/direccion_titulo"
             android:layout_marginRight="10dp"
-            android:textSize="10sp"
+            android:textSize="14sp"
             android:textColor="@android:color/holo_orange_light" />
 
         <TextView
@@ -145,8 +140,8 @@
             android:layout_height="wrap_content"
             android:text="direccion"
             android:textAppearance="?android:attr/textAppearanceSmall"
-            android:textColor="?attr/colorBackgroundFloating"
-            android:textSize="12sp" />
+            android:textColor="@color/colorPrimary"
+            android:textSize="14sp" />
     </LinearLayout>
 
 </LinearLayout>

@@ -3,10 +3,11 @@
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
     android:id="@+id/card1"
     android:layout_width="match_parent"
-    card_view:cardCornerRadius="4dp"
+    card_view:cardCornerRadius="6dp"
     card_view:cardElevation="4dp"
     card_view:cardUseCompatPadding="true"
     card_view:cardPreventCornerOverlap="false"
+    card_view:cardBackgroundColor="@color/colorAccent"
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_height="150dp">
 
@@ -18,7 +19,6 @@
         android:descendantFocusability="blocksDescendants"
         android:focusable="false"
         android:focusableInTouchMode="false"
-        android:background="#537de8"
         android:id="@+id/linear">
 
         <LinearLayout
@@ -57,21 +57,12 @@
                 android:layout_marginTop="10dp">
 
             <TextView
-                android:text="@string/nombre"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/nombre_titulo"
-                android:textSize="10sp"
-                android:textColor="@android:color/holo_orange_light"
-                android:layout_marginRight="10dp" />
-
-            <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Nombre"
                 android:id="@+id/nombre"
-                android:textColor="?attr/colorBackgroundFloating"
-                android:textSize="12sp"
+                android:textStyle="bold"
+                android:textColor="@color/colorPrimary"
+                android:textSize="18sp"
                 android:layout_marginBottom="5dp" />
 
                 </LinearLayout>
@@ -89,8 +80,9 @@
                 android:text="@string/seccion"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:textStyle="bold"
                 android:id="@+id/seccion_titulo"
-                android:textSize="10sp"
+                android:textSize="14sp"
                 android:textColor="@android:color/holo_orange_light"
                 android:layout_marginRight="10dp" />
 
@@ -100,7 +92,7 @@
                 android:text="seccion"
                 android:id="@+id/seccion"
                 android:textColor="?android:attr/colorBackground"
-                android:textSize="12sp"
+                android:textSize="14sp"
                 android:layout_marginBottom="5dp"
                />
 </LinearLayout>
@@ -115,8 +107,9 @@
                 android:text="@string/lema"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:textStyle="bold"
                 android:id="@+id/lema_titulo"
-                android:textSize="10sp"
+                android:textSize="14sp"
                 android:textColor="@android:color/holo_orange_light"
                 android:layout_marginRight="10dp" />
 
@@ -125,7 +118,7 @@
                 android:layout_height="wrap_content"
                 android:text="lema"
                 android:id="@+id/lema"
-                android:textSize="12sp"
+                android:textSize="14sp"
                 android:textColor="?attr/colorBackgroundFloating"
                 android:gravity="right" />
 

@@ -32,7 +32,7 @@ public class FireBaseActivity extends Activity {
 
     public void onBackPressed() {
         super.onBackPressed();
-        overridePendingTransition(R.anim.left_in,R.anim.left_out);
+        overridePendingTransition(R.anim.right_in,R.anim.right_out);
     }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,11 +51,14 @@ public class FireBaseActivity extends Activity {
 
         // rellenara los campos automaticamente si es que ya tiene cuenta
         SharedPreferences preferences = getSharedPreferences(PREF, Activity.MODE_PRIVATE);
-        String emailPreference = preferences.getString("email", "");
-        String pwdPreference = preferences.getString("pwd", "");
 
-        email.setText(emailPreference);
-        pwd.setText(pwdPreference);
+            String emailPreference = preferences.getString("email", "");
+            String pwdPreference = preferences.getString("pwd", "");
+            email.setText(emailPreference);
+            pwd.setText(pwdPreference);
+
+        //Snackbar.make(activity_registro, "No se te almacenaron correctamente los datos", Snackbar.LENGTH_SHORT).show();
+
 
 
 

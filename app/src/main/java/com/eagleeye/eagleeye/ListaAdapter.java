@@ -32,7 +32,6 @@ public class ListaAdapter extends RecyclerView.Adapter<ListaAdapter.itemViewHold
 
     public static class itemViewHolder extends RecyclerView.ViewHolder {
         TextView lugar,direccion,localizacion,telefono,web;
-        ImageView imatge;
         RatingBar ratingBar;
         CardView card;
         public itemViewHolder(View v) {
@@ -41,7 +40,6 @@ public class ListaAdapter extends RecyclerView.Adapter<ListaAdapter.itemViewHold
             direccion= (TextView) v.findViewById(R.id.tv_direccion);
             telefono= (TextView) v.findViewById(R.id.tv_telefono);
             web= (TextView) v.findViewById(R.id.tv_web);
-            imatge=(ImageView) v.findViewById(R.id.iv_lugar);
             ratingBar=(RatingBar) v.findViewById(R.id.ratingBar);
 
             card= (CardView) v.findViewById(R.id.card);
@@ -69,21 +67,34 @@ public class ListaAdapter extends RecyclerView.Adapter<ListaAdapter.itemViewHold
     @Override
     public void onBindViewHolder(final itemViewHolder holder, int position) {
         holder.lugar.setText(lugarList.get(position).getName());
-        holder.direccion.setText(lugarList.get(position).getAdress());
+        if (lugarList.get(position).getAdress() !="") {
+            holder.direccion.setText(lugarList.get(position).getAdress());
+        } else{
+            holder.direccion.setText("No disponible");
+        }
+
         //holder.localizacion.setText("Localizacion: "+lugarList.get(position).getLat()+" , "+lugarList.get(position).getLng());
-        holder.telefono.setText(lugarList.get(position).getPhone());
+        if (lugarList.get(position).getPhone()!="") {
+            holder.telefono.setText(lugarList.get(position).getPhone());
+        } else{
+            holder.telefono.setText("No disponible");
+        }
 
-        holder.web.setClickable(true);
-        holder.web.setText(Html.fromHtml(lugarList.get(position).getWeb()+""));
-        holder.web.setOnClickListener(new View.OnClickListener() {
-            @Override public void onClick(View view) {
-                Intent myIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(lugarList.get(holder.getAdapterPosition()).getWeb()+""));
-                view.getContext().startActivity(myIntent);
-            }
-        });
+        if (lugarList.get(position).getWeb() != null) {
+            holder.web.setClickable(true);
+            holder.web.setText(Html.fromHtml(lugarList.get(position).getWeb() + ""));
+
+            holder.web.setOnClickListener(new View.OnClickListener() {
+                @Override public void onClick(View view) {
+                    Intent myIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(lugarList.get(holder.getAdapterPosition()).getWeb()+""));
+                    view.getContext().startActivity(myIntent);
+                }
+            });
+        } else{
+            holder.web.setText("No disponible");
+        }
 
 
-        holder.imatge.setImageBitmap(lugarList.get(position).getFoto());
 
         if(lugarList.get(position).getRating()!=-1.0){
             holder.ratingBar.setRating(lugarList.get(holder.getAdapterPosition()).getRating());
