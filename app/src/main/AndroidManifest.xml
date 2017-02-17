@@ -40,11 +40,16 @@
         <activity
             android:name=".MapsActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".ListaActivity" />
-        <activity android:name=".FireBaseActivity" />
-        <activity android:name=".ChatActivity" />
-        <activity android:name=".IndividualChatActivity" />
-        <activity android:name=".FiltroActivity"></activity>
+        <activity android:name=".ListaActivity"
+            android:screenOrientation="portrait" />
+        <activity android:name=".FireBaseActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".ChatActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".IndividualChatActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".FiltroActivity"
+            android:screenOrientation="portrait"></activity>
     </application>
 
 </manifest>
