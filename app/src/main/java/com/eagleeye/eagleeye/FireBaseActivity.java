@@ -68,10 +68,10 @@ public class FireBaseActivity extends Activity {
             public void onClick(View view) {
                 try {
                     nuevoUsuario = true;
-                    btnEntrar.setText("REGISTRARSE");
+                    btnEntrar.setText(R.string.registrarse);
                     nickname.setVisibility(View.VISIBLE);
                 }catch (Exception e){
-                    Snackbar.make(activity_registro, "No se encuentran tus datos, vuelve a registrarte", Snackbar.LENGTH_SHORT).show();
+                    Snackbar.make(activity_registro, R.string.nodatos, Snackbar.LENGTH_SHORT).show();
                 }
 
 
@@ -99,14 +99,14 @@ public class FireBaseActivity extends Activity {
 
                     // volver a poner false el boolean para un acceso futuro
                     nuevoUsuario = false;
-                    btnEntrar.setText("ENTRAR");
+                    btnEntrar.setText(R.string.entrar);
                 } else {
                     try {
                         // Llamar al metodo singIn pasandole los campos que contienen la inf de usuario
                         // (para eso se guarda en SharedPreference en el register)
                         signIn(email.getText().toString(), pwd.getText().toString());
                     }catch (Exception e){
-                        Snackbar.make(activity_registro, "Debes registrarte antes de acceder a esta opción", Snackbar.LENGTH_SHORT).show();
+                        Snackbar.make(activity_registro, R.string.debesregis, Snackbar.LENGTH_SHORT).show();
 
                     }
 
@@ -121,9 +121,9 @@ public class FireBaseActivity extends Activity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (!task.isSuccessful()) {
-                            Snackbar.make(activity_registro, "No se ha podido registrar...vuelve a intentarlo", Snackbar.LENGTH_SHORT).show();
+                            Snackbar.make(activity_registro, R.string.erroraceder, Snackbar.LENGTH_SHORT).show();
                         } else {
-                            Snackbar.make(activity_registro, "Registrado", Snackbar.LENGTH_SHORT).show();
+                            Snackbar.make(activity_registro, R.string.registrado, Snackbar.LENGTH_SHORT).show();
                             i = new Intent(getApplicationContext(),ChatActivity.class);
                             startActivity(i);
                             overridePendingTransition(R.anim.left_in,R.anim.left_out);
@@ -139,9 +139,9 @@ public class FireBaseActivity extends Activity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (!task.isSuccessful()) {
-                            Snackbar.make(activity_registro, "No se ha podido acceder...vuelve a intentarlo", Snackbar.LENGTH_SHORT).show();
+                            Snackbar.make(activity_registro, R.string.erroraceder, Snackbar.LENGTH_SHORT).show();
                         } else {
-                            Snackbar.make(activity_registro, "Bienvenido", Snackbar.LENGTH_SHORT).show();
+                            Snackbar.make(activity_registro, R.string.bienvenido, Snackbar.LENGTH_SHORT).show();
                             i = new Intent(getApplicationContext(),ChatActivity.class);
                             startActivity(i);
                             overridePendingTransition(R.anim.left_in,R.anim.left_out);

@@ -49,7 +49,7 @@ public class IndividualChatActivity extends AppCompatActivity {
         setTitle(" Chat con -"+nombre_usuario);
         // Crear una instancia con una referencia por nombre de usuario
         // se creara una tabla aparte del chat masivo
-        bd_Firebase = FirebaseDatabase.getInstance().getReference().child(nombre_usuario);
+        bd_Firebase = FirebaseDatabase.getInstance().getReference("conversaciones").child(nombre_usuario);
 
         btn_enviar.setOnClickListener(new View.OnClickListener() {
             @Override

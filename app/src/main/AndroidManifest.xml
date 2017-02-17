@@ -45,8 +45,10 @@
         <activity android:name=".FireBaseActivity"
             android:screenOrientation="portrait"/>
         <activity android:name=".ChatActivity"
+            android:windowSoftInputMode="adjustPan"
             android:screenOrientation="portrait"/>
         <activity android:name=".IndividualChatActivity"
+            android:windowSoftInputMode="adjustPan"
             android:screenOrientation="portrait"/>
         <activity android:name=".FiltroActivity"
             android:screenOrientation="portrait"></activity>

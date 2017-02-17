@@ -106,7 +106,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
 
 
 
-    private String [] titulo = {"Alojamiento", "Comida","Dinero", "Emergencia", "Fallas", "Monumentos", "Ocio", "Transporte"};
+    private int [] titulo = {R.string.alojamiento, R.string.comida,R.string.dinero, R.string.emergencia, R.string.fallas, R.string.monumentos, R.string.ocio, R.string.transporte};
 
     private int [] icon = {R.drawable.alojamiento,R.drawable.food,R.drawable.dinero,R.drawable.emergencia,R.drawable.fallas,R.drawable.monumentos,R.drawable.ocio,R.drawable.transportes};
     private int [] icon2 = {R.drawable.alojamiento2,R.drawable.food2,
@@ -414,9 +414,9 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
             return true;
         } else {
 
-            Snackbar mySnackbar = Snackbar.make(findViewById(R.id.map), "No hay conexion", Snackbar.LENGTH_INDEFINITE);
+            Snackbar mySnackbar = Snackbar.make(findViewById(R.id.map), R.string.noconexion, Snackbar.LENGTH_INDEFINITE);
 
-            mySnackbar.setAction("Reintentar", new View.OnClickListener() {
+            mySnackbar.setAction(R.string.reintentar, new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     comprovaConnexio();

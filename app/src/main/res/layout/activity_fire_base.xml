@@ -45,7 +45,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="41dp"
             android:id="@+id/btnEntrar"
-            android:background="@color/common_google_signin_btn_text_dark_focused"
+            android:background="@android:color/holo_orange_light"
             android:textColor="@color/cardview_light_background"
             android:textColorLink="?android:attr/colorForegroundInverse" />
 

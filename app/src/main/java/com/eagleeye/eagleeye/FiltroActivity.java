@@ -7,6 +7,9 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.ImageView;
+import android.widget.Toast;
+
+import java.util.Locale;
 
 public class FiltroActivity extends AppCompatActivity{
     
@@ -38,6 +41,17 @@ public class FiltroActivity extends AppCompatActivity{
         monumentos=(ImageView) findViewById(R.id.ESmonumentos);
         ocio=(ImageView) findViewById(R.id.ESocio);
         transporte=(ImageView) findViewById(R.id.EStransporte);
+
+        if(getResources().getConfiguration().locale.getLanguage().toString().compareTo("en")==0){
+            alojamiento.setImageResource(R.drawable.alojamiento_in);
+            comida.setImageResource(R.drawable.comida_in);
+            dinero.setImageResource(R.drawable.dinero_in);
+            emergencia.setImageResource(R.drawable.emergencias_in);
+            monumentos.setImageResource(R.drawable.monumentos_in);
+            ocio.setImageResource(R.drawable.ocio_in);
+            transporte.setImageResource(R.drawable.transporte_in);
+        }
+        //Toast.makeText(this,getResources().getConfiguration().locale.getLanguage(),Toast.LENGTH_SHORT).show();
 
         alojamiento.setOnClickListener(filtroClickListener);
         comida.setOnClickListener(filtroClickListener);

@@ -21,12 +21,12 @@ import static com.eagleeye.eagleeye.R.id.card;
 
 public class NavDrawerAdapter extends RecyclerView.Adapter<NavDrawerAdapter.NavHolderView>{
 
-    String titulo[];
+    int titulo[];
     int icono[];
     private final int TYPE_HEADER = 0;
     private final int TYPE_ITEM = 1;
 
-    public NavDrawerAdapter(int icono[],String titulo[]){
+    public NavDrawerAdapter(int icono[],int titulo[]){
         this.titulo = titulo;
         this.icono = icono;
 

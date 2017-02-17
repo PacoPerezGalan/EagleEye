@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">EagleEye</string>
+    <string name="alojamiento">Lodging</string>
+    <string name="bienvenido">Welcome</string>
+    <string name="cerrado">Closed:</string>
+    <string name="chatcon">Chat with:</string>
+    <string name="close">close</string>
+    <string name="comida">Food</string>
+    <string name="debesregis">You must register before accessing at this option</string>
+    <string name="dinero">Money</string>
+    <string name="direccion">Direction:</string>
+    <string name="email">email</string>
+    <string name="emergencia">Emergency</string>
+    <string name="entrada">Price:</string>
+    <string name="entrar">Log in</string>
+    <string name="entrar2">Enter</string>
+    <string name="erroraceder">Could not access ... try again</string>
+    <string name="errorregis">Could not register ... try again</string>
+    <string name="lema">Slogan:</string>
+    <string name="lista">List</string>
+    <string name="mensaje">Message</string>
+    <string name="monumentos">Monuments</string>
+    <string name="no_est_s_registrado">"Not registered yet? "</string>
+    <string name="noconexion">No connection</string>
+    <string name="nodatos">We don\'t find your information, please register again</string>
+    <string name="nodisponible">Not avialable</string>
+    <string name="nombre">Name:</string>
+    <string name="ocio">Leisure</string>
+    <string name="open">open</string>
+    <string name="password">password</string>
+    <string name="registrado">Registered</string>
+    <string name="registrarse">Sign in</string>
+    <string name="registrarse2">Sign in</string>
+    <string name="reintentar">retry</string>
+    <string name="seccion">Section:</string>
+    <string name="sign_out">Sign out</string>
+    <string name="telefono">Phone:</string>
+    <string name="transporte">Transport</string>
+    <string name="web">Web:</string>
+    <string name="ya_est_s_registrado">Already are you registered?</string>
+</resources>

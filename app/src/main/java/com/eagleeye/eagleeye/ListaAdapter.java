@@ -72,14 +72,14 @@ public class ListaAdapter extends RecyclerView.Adapter<ListaAdapter.itemViewHold
         if (lugarList.get(position).getAdress() !="") {
             holder.direccion.setText(lugarList.get(position).getAdress());
         } else{
-            holder.direccion.setText("No disponible");
+            holder.direccion.setText(R.string.nodisponible);
         }
 
         //holder.localizacion.setText("Localizacion: "+lugarList.get(position).getLat()+" , "+lugarList.get(position).getLng());
         if (lugarList.get(position).getPhone()!="") {
             holder.telefono.setText(lugarList.get(position).getPhone());
         } else{
-            holder.telefono.setText("No disponible");
+            holder.telefono.setText(R.string.nodisponible);
         }
 
         if (lugarList.get(position).getWeb() != null) {
@@ -93,7 +93,7 @@ public class ListaAdapter extends RecyclerView.Adapter<ListaAdapter.itemViewHold
                 }
             });
         } else{
-            holder.web.setText("No disponible");
+            holder.web.setText(R.string.nodisponible);
         }
 
 
