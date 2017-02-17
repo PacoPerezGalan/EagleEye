@@ -109,8 +109,9 @@ public class ListaAdapter extends RecyclerView.Adapter<ListaAdapter.itemViewHold
                 Bundle b=new Bundle();
                 b.putDouble("lat",lugarList.get(holder.getAdapterPosition()).getLat());
                 b.putDouble("lng",lugarList.get(holder.getAdapterPosition()).getLng());
+                b.putInt("marker",holder.getAdapterPosition());
                 ((Activity)ListaActivity.context).getIntent().putExtras(b);
-                ((Activity)ListaActivity.context).setResult(Activity.RESULT_OK);
+                ((Activity)ListaActivity.context).setResult(Activity.RESULT_OK,((Activity)ListaActivity.context).getIntent());
                 ((Activity)ListaActivity.context).finish();
                 //Toast.makeText(view.getContext(),lugarList.get(holder.getAdapterPosition()).getName(),Toast.LENGTH_SHORT).show();
             }

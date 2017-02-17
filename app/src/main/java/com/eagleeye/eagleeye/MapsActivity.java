@@ -133,6 +133,9 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
 
     static ArrayList<Fallas> fallasL;
     static ArrayList<Monumentos>monumentosL;
+
+    boolean conectaPrimeraVegada;
+    boolean zoomMarker;
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     public void onBackPressed() {
         super.onBackPressed();
@@ -142,10 +145,10 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps);
+        conectaPrimeraVegada=true;
 
         lugaresList=new ArrayList<Lugar>();
         markerArrayList=new ArrayList<Marker>();
-        filtroTypes="";
         btn_lista=(Button) findViewById(R.id.btn_lista);
         btn_chat=(Button) findViewById(R.id.btn_chat);
         fallasL=new ArrayList<Fallas>();
@@ -164,7 +167,10 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         recyclerView.setLayoutManager(layoutManager);
 
         Bundle b=getIntent().getExtras();
+
         filtroSeleccionat=b.getInt("filtro");
+        filtroTypes="";
+        canviarFiltroSeleccionat(b.getInt("filtro"),false);
 
         adapter = new NavDrawerAdapter(icon2, titulo);
 
@@ -194,12 +200,13 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         final SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
 
+
         btn_lista.setEnabled(false);
         btn_lista.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent i=new Intent(getApplicationContext(),ListaActivity.class);
-                startActivity(i);
+                startActivityForResult(i,1);
                 overridePendingTransition(R.anim.left_in,R.anim.left_out);
             }
         });
@@ -208,7 +215,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
             @Override
             public void onClick(View view) {
                 Intent i=new Intent(getApplicationContext(),FireBaseActivity.class);
-                startActivityForResult(i,1);
+                startActivity(i);
                 overridePendingTransition(R.anim.left_in,R.anim.left_out);
             }
         });
@@ -218,16 +225,20 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if(requestCode==1){
+        if(requestCode==1 && resultCode==Activity.RESULT_OK){
             Bundle b =data.getExtras();
-            Toast.makeText(getApplicationContext(),b.getDouble("lat")+" "+b.getDouble("lng"),Toast.LENGTH_SHORT).show();
-            mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(b.getDouble("lat"),b.getDouble("lng")), 15));
+            //Toast.makeText(getApplicationContext(),"lat: "+b.getDouble("lat")+"   lng:"+b.getDouble("lng"),Toast.LENGTH_SHORT).show();
+            zoomMarker=true;
+            mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(b.getDouble("lat"),b.getDouble("lng")), 18));
+            markerArrayList.get(b.getInt("marker")).showInfoWindow();
         }
     }
 
-    public static void canviarFiltroSeleccionat(int s){
+    public static void canviarFiltroSeleccionat(int s,boolean desdeNavigation){
         filtroSeleccionat=s;
-        adapter.notifyDataSetChanged();
+        if(desdeNavigation) {
+            adapter.notifyDataSetChanged();
+        }
         switch (s){
             case 1:
                 filtroTypes="lodging|campground|rv_park";
@@ -339,7 +350,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         mMap.setOnCameraIdleListener(new GoogleMap.OnCameraIdleListener() {
             @Override
             public void onCameraIdle() {
-                if(razon !=2 || botonUbicacionPulsado) {
+                if((razon !=2 && !zoomMarker) || botonUbicacionPulsado) {
 
                     mMap.clear();
                     lugaresList.clear();
@@ -355,6 +366,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                     }
 
                 }
+                zoomMarker=false;
                 botonUbicacionPulsado=false;
                 //Toast.makeText(getApplicationContext(),"menejant camara",Toast.LENGTH_SHORT).show();
             }
@@ -598,18 +610,21 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
 
     @Override
     public void onConnected(@Nullable Bundle bundle) {
-        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+        if(conectaPrimeraVegada) {
+            if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
 
-            return;
-        }
+                return;
+            }
 
-        Location mLastLocation = LocationServices.FusedLocationApi.getLastLocation(mGoogleApiClient);
+            Location mLastLocation = LocationServices.FusedLocationApi.getLastLocation(mGoogleApiClient);
 
-        if (mLastLocation != null) {
-            actualitzarUbicacio(mLastLocation);
+            if (mLastLocation != null) {
+                actualitzarUbicacio(mLastLocation);
 
-        } else {
-            Toast.makeText(this, "onConnected: location null", Toast.LENGTH_SHORT).show();
+            } else {
+                Toast.makeText(this, "onConnected: location null", Toast.LENGTH_SHORT).show();
+            }
+            conectaPrimeraVegada=false;
         }
 
     }

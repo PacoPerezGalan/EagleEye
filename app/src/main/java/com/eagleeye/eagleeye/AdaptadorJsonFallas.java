@@ -1,5 +1,6 @@
 package com.eagleeye.eagleeye;
 
+import android.app.Activity;
 import android.content.Context;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -22,7 +23,6 @@ public class AdaptadorJsonFallas extends RecyclerView.Adapter<AdaptadorJsonFalla
     Context context;
     LinearLayout linearLayout;
 
-
     public AdaptadorJsonFallas(List<Fallas> fallasL, Context context) {
         this.fallasL = fallasL;
         this.context = context;
@@ -33,6 +33,7 @@ public class AdaptadorJsonFallas extends RecyclerView.Adapter<AdaptadorJsonFalla
         public TextView seccion;
         private TextView lema;
         private ImageView img;
+        ImageView ubicacio;
 
 
         public FallasViewHolder(View itemView) {
@@ -42,7 +43,7 @@ public class AdaptadorJsonFallas extends RecyclerView.Adapter<AdaptadorJsonFalla
             seccion = (TextView)itemView.findViewById(R.id.seccion);
             lema = (TextView)itemView.findViewById(R.id.lema);
             img = (ImageView)itemView.findViewById(R.id.img);
-            linearLayout = (LinearLayout)itemView.findViewById(R.id.linear);
+            ubicacio=(ImageView) itemView.findViewById(R.id.ubicacio);
 
         }
     }
@@ -55,20 +56,26 @@ public class AdaptadorJsonFallas extends RecyclerView.Adapter<AdaptadorJsonFalla
     }
 
     @Override
-    public void onBindViewHolder(FallasViewHolder holder, final int position) {
+    public void onBindViewHolder(final FallasViewHolder holder, final int position) {
             holder.nombre.setText(this.fallasL.get(position).getNombre());
             holder.seccion.setText(this.fallasL.get(position).getSeccion());
             holder.lema.setText(this.fallasL.get(position).getLema());
             Picasso.with(context).load(this.fallasL.get(position).getBoceto()).into(holder.img);
 
-
-        linearLayout.setOnClickListener(new View.OnClickListener() {
+        holder.ubicacio.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Log.d("asdf","longitud ->" +fallasL.get(position).getLongitud());
-                Log.d("asdf","latitud ->" +fallasL.get(position).getLatitud());
+                Bundle b=new Bundle();
+                b.putDouble("lat",fallasL.get(holder.getAdapterPosition()).getLatitud());
+                b.putDouble("lng",fallasL.get(holder.getAdapterPosition()).getLongitud());
+                b.putInt("marker",holder.getAdapterPosition());
+                ((Activity)ListaActivity.context).getIntent().putExtras(b);
+                ((Activity)ListaActivity.context).setResult(Activity.RESULT_OK,((Activity)ListaActivity.context).getIntent());
+                ((Activity)ListaActivity.context).finish();
+                //Toast.makeText(view.getContext(),lugarList.get(holder.getAdapterPosition()).getName(),Toast.LENGTH_SHORT).show();
             }
         });
+
 
 
     }

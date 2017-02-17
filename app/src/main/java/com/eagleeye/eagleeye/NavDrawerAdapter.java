@@ -81,7 +81,7 @@ public class NavDrawerAdapter extends RecyclerView.Adapter<NavDrawerAdapter.NavH
                 @Override
                 public void onClick(View v) {
                     Toast.makeText(v.getContext(),"seleccionat anterior "+MapsActivity.filtroSeleccionat+"   actual"+position,Toast.LENGTH_SHORT).show();
-                    MapsActivity.canviarFiltroSeleccionat(position);
+                    MapsActivity.canviarFiltroSeleccionat(position,true);
 
 
                 }

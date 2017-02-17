@@ -1,5 +1,6 @@
 package com.eagleeye.eagleeye;
 
+import android.app.Activity;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.os.AsyncTask;
@@ -35,6 +36,7 @@ public class ListaActivity extends AppCompatActivity {
 
     public void onBackPressed() {
         super.onBackPressed();
+        setResult(Activity.RESULT_CANCELED);
         overridePendingTransition(R.anim.right_in,R.anim.right_out);
     }
 
