@@ -80,7 +80,7 @@ public class NavDrawerAdapter extends RecyclerView.Adapter<NavDrawerAdapter.NavH
             holder.card.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Toast.makeText(v.getContext(),"seleccionat anterior "+MapsActivity.filtroSeleccionat+"   actual"+position,Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(v.getContext(),"seleccionat anterior "+MapsActivity.filtroSeleccionat+"   actual"+position,Toast.LENGTH_SHORT).show();
                     MapsActivity.canviarFiltroSeleccionat(position,true);
 
 
